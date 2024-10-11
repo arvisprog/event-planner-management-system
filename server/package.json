@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "npm test",
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "migration:create": "node migration.js add migration",
+    "migration:run": "node migration.js up"
   },
   "repository": {
     "type": "git",
