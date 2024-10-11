@@ -2,12 +2,9 @@ import "../styles/App.css";
 
 function Login() {
   return (
-    <div className="login-container">
+    <div className="auth-container">
       <h2>Login</h2>
-      <form id="loginForm">
-        <div className="input-group">
-          <input type="text" id="username" placeholder="Username" required />
-        </div>
+      <form id="authForm">
         <div className="input-group">
           <input type="email" id="email" placeholder="Email" required />
         </div>
@@ -24,7 +21,7 @@ function Login() {
         </div>
       </form>
       <div className="links">
-        <a href="/">Don't have an account? Register</a>
+        <a href="/register">Don't have an account? Register</a>
       </div>
     </div>
   );

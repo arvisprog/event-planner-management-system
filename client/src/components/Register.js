@@ -2,11 +2,11 @@ import "../styles/App.css";
 
 function Register() {
   return (
-    <div className="register-container">
+    <div className="auth-container">
       <h2>Register</h2>
-      <form id="registerForm">
+      <form id="authForm">
         <div className="input-group">
-          <input type="text" id="username" placeholder="Username" required />
+          <input type="text" id="name" placeholder="Name" required />
         </div>
         <div className="input-group">
           <input type="email" id="email" placeholder="Email" required />
