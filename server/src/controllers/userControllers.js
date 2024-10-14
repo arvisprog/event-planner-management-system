@@ -17,9 +17,7 @@ exports.register = async (req, res) => {
       .json({ message: "User registered successfully", userId: newUser.id });
   } catch (error) {
     if (error.name === "SequelizeUniqueConstraintError") {
-      return res
-        .status(400)
-        .json({ message: "Username or email already exists" });
+      return res.status(400).json({ message: "Email already exists" });
     }
     res.status(500).json({ message: "Server error", error });
   }
