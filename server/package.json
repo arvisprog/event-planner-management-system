@@ -4,9 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npm test",
-    "start": "nodemon index.js",
-    "migration:create": "node migration.js add migration",
-    "migration:run": "node migration.js up"
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -16,11 +14,15 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.3",
     "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
     "mysql": "^2.18.1",
     "mysql-migrations": "^1.0.7",
     "mysql2": "^3.11.3",
-    "nodemon": "^3.1.7"
+    "nodemon": "^3.1.7",
+    "sequelize": "^6.37.4",
+    "sequelize-cli": "^6.6.2"
   }
 }

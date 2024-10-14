@@ -1,0 +1,10 @@
+{
+  "development": {
+    "username": "root",
+    "password": "",
+    "database": "event_planner_db",
+    "host": "localhost",
+    "port": 8111,
+    "dialect": "mysql"
+  }
+}
