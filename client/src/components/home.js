@@ -1,8 +1,9 @@
 import NavigationBar from "./NavigationBar";
-import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 function Home() {
-  const location = useLocation();
-  const { user } = location.state || {};
+  const user = useSelector((state) => state.auth.auth.user);
+
   console.log("user", user);
   return (
     <div>

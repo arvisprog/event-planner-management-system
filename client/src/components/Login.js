@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { loginSuccess, loginFailure } from "../store/actions";
 import "../styles/App.css";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,9 +23,12 @@ function Login() {
       });
 
       console.log(response.data);
-      navigate("/home", { state: { user: response.data } });
+      dispatch(loginSuccess(response.data));
+      navigate("/home");
     } catch (err) {
-      setError(err.response?.data?.message || "Login failed");
+      const errorMsg = err.response?.data?.message || "Login failed";
+      setError(errorMsg);
+      dispatch(loginFailure(errorMsg));
     }
   };
 

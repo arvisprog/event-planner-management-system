@@ -1,7 +1,18 @@
 import "../styles/Navigation.css";
 import Logo from "../images/logo.png";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { logout } from "../store/actions";
 
 function NavigationBar({ name }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/");
+  };
+
   return (
     <nav className="navbar">
       <div className="logo">
@@ -20,9 +31,9 @@ function NavigationBar({ name }) {
         <a className="cta-button" href="#">
           Hello, {name}
         </a>
-        <a className="link" href="#">
+        <button className="link logout" onClick={handleLogout}>
           Logout
-        </a>
+        </button>
       </div>
     </nav>
   );
