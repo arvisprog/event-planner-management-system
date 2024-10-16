@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const userRoutes = require("./src/routes/userRoutes");
+const routes = require("./src/routes");
 const sequelize = require("./config/database");
 const app = express();
 
@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.use("/api", userRoutes);
+app.use("/api", routes);
 
 sequelize
   .sync()
