@@ -25,10 +25,10 @@ function NavigationBar({ name }) {
         <a className="link" href="/home">
           Home
         </a>
-        <a className="link" href="#">
+        <a className="link" href="/home">
           Create Event
         </a>
-        <a className="cta-button" href="#">
+        <a className="cta-button" href="/home">
           Hello, {name}
         </a>
         <button className="link logout" onClick={handleLogout}>
