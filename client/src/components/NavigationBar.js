@@ -10,6 +10,7 @@ function NavigationBar({ name }) {
 
   const handleLogout = () => {
     dispatch(logout());
+    localStorage.removeItem("user");
     navigate("/");
   };
 

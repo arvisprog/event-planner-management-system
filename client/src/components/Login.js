@@ -24,6 +24,7 @@ function Login() {
 
       console.log(response.data);
       dispatch(loginSuccess(response.data));
+      localStorage.setItem("user", JSON.stringify(response.data));
       navigate("/home");
     } catch (err) {
       const errorMsg = err.response?.data?.message || "Login failed";
