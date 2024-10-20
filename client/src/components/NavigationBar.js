@@ -1,10 +1,12 @@
-import "../styles/Navigation.css";
-import Logo from "../images/logo.png";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../store/actions";
+import Logo from "../images/logo.png";
 
-function NavigationBar({ name }) {
+import "../styles/Navigation.css";
+
+function NavigationBar({ name, handleEventModalData }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -12,6 +14,10 @@ function NavigationBar({ name }) {
     dispatch(logout());
     localStorage.removeItem("user");
     navigate("/");
+  };
+
+  const openModal = () => {
+    handleEventModalData(true);
   };
 
   return (
@@ -26,13 +32,14 @@ function NavigationBar({ name }) {
         <a className="link" href="/home">
           Home
         </a>
-        <a className="link" href="/home">
+
+        <button className="link button" onClick={openModal}>
           Create Event
-        </a>
+        </button>
         <a className="cta-button" href="/home">
           Hello, {name}
         </a>
-        <button className="link logout" onClick={handleLogout}>
+        <button className="link button" onClick={handleLogout}>
           Logout
         </button>
       </div>

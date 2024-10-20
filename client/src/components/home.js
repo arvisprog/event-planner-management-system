@@ -1,14 +1,25 @@
 import React, { useEffect, useState } from "react";
 import NavigationBar from "./NavigationBar";
 import { IoLocationOutline } from "react-icons/io5";
-
 import axios from "axios";
+import EventForm from "./EventForm";
 import "../styles/Event.css";
 
 function Home() {
   const [events, setEvents] = useState([]);
+  const [modalIsOpen, setIsOpen] = useState(false);
+
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user.user.id;
+
+  const getDataFromEventModal = (data) => {
+    setIsOpen(data);
+    console.log(data);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
   async function getEvents() {
     const response = await axios.get("http://localhost:8000/api/events", {
@@ -25,7 +36,10 @@ function Home() {
 
   return (
     <div>
-      <NavigationBar name={user?.user?.name}></NavigationBar>
+      <NavigationBar
+        name={user?.user?.name}
+        handleEventModalData={getDataFromEventModal}
+      />
       <div className="card-category-1">
         {events?.map((event) => {
           const date = new Date(event.date);
@@ -63,6 +77,7 @@ function Home() {
           );
         })}
       </div>
+      <EventForm isModalOpen={modalIsOpen} closeModal={closeModal} />
     </div>
   );
 }

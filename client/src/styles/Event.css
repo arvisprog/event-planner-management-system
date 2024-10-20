@@ -157,3 +157,70 @@
 .basic-card .card-content {
   padding: 30px;
 }
+
+/* Event form css */
+
+.container {
+  background-color: white;
+  overflow: hidden;
+  width: 400px;
+  max-width: 100%;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.header h2 {
+  margin: 0;
+}
+
+.form {
+  padding: 30px 40px;
+}
+
+.form-control {
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.form-control label {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.form-control input,
+.form-control textarea {
+  border: 2px solid #f0f0f0;
+  border-radius: 4px;
+  outline: none;
+  display: block;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 10px;
+  width: 100%;
+}
+
+.form button {
+  background-color: #00aaff;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  display: block;
+  font-family: inherit;
+  font-size: 16px;
+  padding: 10px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  outline: none;
+}
