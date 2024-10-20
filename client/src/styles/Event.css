@@ -1,14 +1,13 @@
 .card-category-1 {
   font-family: sans-serif;
-  margin-bottom: 45px;
-
   text-align: center;
-  display: inline-block;
   margin: 20px 20px;
   text-align: left;
-  gap: 10px;
+  gap: 20px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 0fr);
+  justify-content: center;
+  align-items: center;
 }
 
 .basic-card {
@@ -53,6 +52,7 @@
   width: fit-content;
   font-size: 12px;
 }
+
 .description {
   font-size: 14px;
   margin-top: 10px;
@@ -170,9 +170,10 @@
 .header-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   margin-top: 20px;
+  padding: 0 20px;
 }
 
 .header h2 {
@@ -180,7 +181,7 @@
 }
 
 .form {
-  padding: 30px 40px;
+  padding: 30px 20px;
 }
 
 .form-control {
@@ -217,10 +218,12 @@
   padding: 10px;
   margin-top: 20px;
   width: 100%;
+  cursor: pointer;
 }
 
 .close-button {
   background: none;
   border: none;
   outline: none;
+  cursor: pointer;
 }
