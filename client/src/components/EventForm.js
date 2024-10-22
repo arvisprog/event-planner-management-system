@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
+import axios from "axios";
 import { IoMdClose } from "react-icons/io";
 
 const customStyles = {
@@ -15,7 +16,29 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-function EventForm({ isModalOpen, closeModal }) {
+function EventForm({ isModalOpen, closeModal, type }) {
+  const [name, setName] = useState("");
+  const [date, setDate] = useState("");
+  const [location, setLocation] = useState("");
+  const [description, setDescription] = useState("");
+
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const submit = async () => {
+    const response = await axios.post(
+      "http://localhost:8000/api/events",
+
+      {
+        name,
+        date,
+        location,
+        description,
+      },
+      { headers: { Authorization: `Bearer ${user?.token}` } }
+    );
+    console.log(response.data);
+  };
+
   return (
     <div>
       <Modal
@@ -25,26 +48,44 @@ function EventForm({ isModalOpen, closeModal }) {
         contentLabel="Example Modal"
       >
         <div className="header-container">
-          <h2 class="header">Create Event</h2>
+          <h2 className="header">{type} Event</h2>
           <button onClick={closeModal} className="close-button">
             <IoMdClose size={20} />
           </button>
         </div>
-        <div class="container">
-          <form id="form" class="form">
-            <div class="form-control">
-              <input type="text" placeholder="Event Name" />
+        <div className="container">
+          <form id="form" className="form">
+            <div className="form-control">
+              <input
+                type="text"
+                placeholder="Event Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
             </div>
-            <div class="form-control">
-              <input type="date" />
+            <div className="form-control">
+              <input
+                type="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+              />
             </div>
-            <div class="form-control">
-              <input type="text" placeholder="Location" />
+            <div className="form-control">
+              <input
+                type="text"
+                placeholder="Location"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+              />
             </div>
-            <div class="form-control">
-              <textarea placeholder="Description" />
+            <div className="form-control">
+              <textarea
+                placeholder="Description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
             </div>
-            <button>Submit</button>
+            <button onClick={submit}>Submit</button>
           </form>
         </div>
       </Modal>

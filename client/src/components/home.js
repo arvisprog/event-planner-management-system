@@ -8,17 +8,23 @@ import "../styles/Event.css";
 function Home() {
   const [events, setEvents] = useState([]);
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [type, setType] = useState("");
 
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user.user.id;
 
   const getDataFromEventModal = (data) => {
     setIsOpen(data);
-    console.log(data);
+    setType("Create");
   };
 
   const closeModal = () => {
     setIsOpen(false);
+  };
+
+  const openModal = () => {
+    setIsOpen(true);
+    setType("Edit");
   };
 
   async function getEvents() {
@@ -64,20 +70,20 @@ function Home() {
 
               <div className="card-link">
                 {isOwnEvent ? (
-                  <a href="/home" title="Read Full">
-                    Edit Event
-                  </a>
+                  <button onClick={openModal}>Edit Event</button>
                 ) : (
-                  <a href="/home" title="Read Full">
-                    Join Event
-                  </a>
+                  <a href="/home">Join Event</a>
                 )}
               </div>
             </div>
           );
         })}
       </div>
-      <EventForm isModalOpen={modalIsOpen} closeModal={closeModal} />
+      <EventForm
+        isModalOpen={modalIsOpen}
+        closeModal={closeModal}
+        type={type}
+      />
     </div>
   );
 }
