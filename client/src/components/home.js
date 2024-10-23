@@ -9,6 +9,7 @@ function Home() {
   const [events, setEvents] = useState([]);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [type, setType] = useState("");
+  const [eventId, setEventId] = useState(null);
 
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user.user.id;
@@ -22,9 +23,10 @@ function Home() {
     setIsOpen(false);
   };
 
-  const openModal = () => {
+  const openModal = (eventId) => {
     setIsOpen(true);
     setType("Edit");
+    setEventId(eventId);
   };
 
   async function getEvents() {
@@ -70,7 +72,9 @@ function Home() {
 
               <div className="card-link">
                 {isOwnEvent ? (
-                  <button onClick={openModal}>Edit Event</button>
+                  <button onClick={() => openModal(event.id)}>
+                    Edit Event
+                  </button>
                 ) : (
                   <a href="/home">Join Event</a>
                 )}
@@ -83,6 +87,7 @@ function Home() {
         isModalOpen={modalIsOpen}
         closeModal={closeModal}
         type={type}
+        eventId={eventId}
       />
     </div>
   );

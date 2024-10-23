@@ -16,7 +16,7 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-function EventForm({ isModalOpen, closeModal, type }) {
+function EventForm({ isModalOpen, closeModal, type, eventId }) {
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
   const [location, setLocation] = useState("");
@@ -25,18 +25,31 @@ function EventForm({ isModalOpen, closeModal, type }) {
   const user = JSON.parse(localStorage.getItem("user"));
 
   const submit = async () => {
-    const response = await axios.post(
-      "http://localhost:8000/api/events",
+    if (type === "Edit") {
+      console.log("eventid", eventId);
+      const response = await axios.put(
+        `http://localhost:8000/api/events/${eventId}`,
+        {
+          name,
+          date,
+          location,
+          description,
+        },
+        { headers: { Authorization: `Bearer ${user?.token}` } }
+      );
+    } else {
+      const response = await axios.post(
+        "http://localhost:8000/api/events",
 
-      {
-        name,
-        date,
-        location,
-        description,
-      },
-      { headers: { Authorization: `Bearer ${user?.token}` } }
-    );
-    console.log(response.data);
+        {
+          name,
+          date,
+          location,
+          description,
+        },
+        { headers: { Authorization: `Bearer ${user?.token}` } }
+      );
+    }
   };
 
   return (
@@ -54,39 +67,39 @@ function EventForm({ isModalOpen, closeModal, type }) {
           </button>
         </div>
         <div className="container">
-          <form id="form" className="form">
-            <div className="form-control">
-              <input
-                type="text"
-                placeholder="Event Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            <div className="form-control">
-              <input
-                type="date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-              />
-            </div>
-            <div className="form-control">
-              <input
-                type="text"
-                placeholder="Location"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-              />
-            </div>
-            <div className="form-control">
-              <textarea
-                placeholder="Description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              />
-            </div>
-            <button onClick={submit}>Submit</button>
-          </form>
+          {/* <form id="form" className="form"> */}
+          <div className="form-control">
+            <input
+              type="text"
+              placeholder="Event Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div className="form-control">
+            <input
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+            />
+          </div>
+          <div className="form-control">
+            <input
+              type="text"
+              placeholder="Location"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+            />
+          </div>
+          <div className="form-control">
+            <textarea
+              placeholder="Description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+          <button onClick={submit}>Submit</button>
+          {/* </form> */}
         </div>
       </Modal>
     </div>
