@@ -62,7 +62,7 @@ function Home() {
             <div className="basic-card basic-card-light" key={event.id}>
               <div className="card-content">
                 <p className={"card-text " + dateStyleClass}>{formattedDate}</p>
-                <span className="card-title card-label">{event.name}</span>
+                <span className="card-title">{event.name}</span>
                 <p className="card-text">
                   <IoLocationOutline style={{ marginRight: "5px" }} />
                   {event.location}

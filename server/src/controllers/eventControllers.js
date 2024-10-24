@@ -1,4 +1,4 @@
-const Event = require("../models/event"); // Adjust the path as necessary
+const Event = require("../models/event");
 
 // Create a new event
 exports.createEvent = async (req, res) => {
