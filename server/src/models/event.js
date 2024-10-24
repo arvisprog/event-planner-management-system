@@ -36,4 +36,8 @@ Event.init(
   }
 );
 
+Event.associate = (models) => {
+  Event.hasMany(models.Attendee, { foreignKey: "eventId" });
+};
+
 module.exports = Event;

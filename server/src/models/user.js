@@ -31,4 +31,8 @@ User.init(
   }
 );
 
+User.associate = (models) => {
+  User.hasMany(models.Attendee, { foreignKey: "userId" });
+};
+
 module.exports = User;

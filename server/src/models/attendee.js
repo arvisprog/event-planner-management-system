@@ -33,4 +33,9 @@ Attendee.init(
   }
 );
 
+Attendee.associate = (models) => {
+  Attendee.belongsTo(models.Event, { foreignKey: "eventId" });
+  Attendee.belongsTo(models.User, { foreignKey: "userId" });
+};
+
 module.exports = Attendee;

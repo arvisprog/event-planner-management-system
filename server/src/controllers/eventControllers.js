@@ -1,4 +1,6 @@
+const Attendee = require("../models/attendee");
 const Event = require("../models/event");
+const User = require("../models/user");
 
 // Create a new event
 exports.createEvent = async (req, res) => {
@@ -21,7 +23,20 @@ exports.createEvent = async (req, res) => {
 // Get all events
 exports.getAllEvents = async (req, res) => {
   try {
-    const events = await Event.findAll();
+    const events = await Event.findAll({
+      include: [
+        {
+          model: Attendee,
+          include: [
+            {
+              model: User,
+              attributes: ["id", "name"], // Adjust attributes as necessary
+            },
+          ],
+        },
+      ],
+    });
+
     return res.status(200).json(events);
   } catch (error) {
     return res.status(500).json({ message: error.message });

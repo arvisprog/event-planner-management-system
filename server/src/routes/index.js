@@ -2,7 +2,10 @@ const express = require("express");
 const router = express.Router();
 const authMiddleware = require("../middleware/authMiddleware");
 const userController = require("../controllers/userControllers");
-const { saveAttendee } = require("../controllers/attendeeControllers");
+const {
+  saveAttendee,
+  getAttendeesByEventId,
+} = require("../controllers/attendeeControllers");
 
 const {
   createEvent,

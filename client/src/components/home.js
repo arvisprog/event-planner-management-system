@@ -10,6 +10,7 @@ function Home() {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [type, setType] = useState("");
   const [eventId, setEventId] = useState(null);
+  const [attendedEvents, setAttendedEvents] = useState(new Set());
 
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user.user.id;
@@ -29,12 +30,27 @@ function Home() {
     setEventId(eventId);
   };
 
+  const joinEvent = async (eventId) => {
+    try {
+      await axios.post(
+        "http://localhost:8000/api/attendees",
+        { eventId },
+        { headers: { Authorization: `Bearer ${user?.token}` } }
+      );
+
+      // Update attendedEvents after joining
+      setAttendedEvents((prev) => new Set(prev).add(eventId));
+    } catch (error) {
+      console.error("Error joining event:", error);
+    }
+  };
+
   async function getEvents() {
     const response = await axios.get("http://localhost:8000/api/events", {
       headers: { Authorization: `Bearer ${user?.token}` },
     });
 
-    setEvents(response?.data);
+    setEvents(response.data);
   }
 
   useEffect(() => {
@@ -58,6 +74,11 @@ function Home() {
           });
           const isOwnEvent = userId === event.userId;
           const dateStyleClass = isOwnEvent ? "date" : "event-date";
+          const attendeesCount = event.Attendees.length;
+          const isUserAttending = event.Attendees.some(
+            (attendee) => attendee.userId === userId
+          );
+
           return (
             <div className="basic-card basic-card-light" key={event.id}>
               <div className="card-content">
@@ -67,8 +88,12 @@ function Home() {
                   <IoLocationOutline style={{ marginRight: "5px" }} />
                   {event.location}
                 </p>
-
                 <p className="card-text description">{event.description}</p>
+                {attendeesCount > 0 && (
+                  <p className="card-text attendees">
+                    {attendeesCount} attendees
+                  </p>
+                )}
               </div>
 
               <div className="card-link">
@@ -80,7 +105,18 @@ function Home() {
                     Edit Event
                   </button>
                 ) : (
-                  <button className="edit-button">Join Event</button>
+                  <>
+                    {isUserAttending ? (
+                      <button className="edit-button">Leave Event</button>
+                    ) : (
+                      <button
+                        onClick={() => joinEvent(event.id)}
+                        className="edit-button"
+                      >
+                        Join Event
+                      </button>
+                    )}
+                  </>
                 )}
               </div>
             </div>
