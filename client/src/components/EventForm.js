@@ -67,39 +67,39 @@ function EventForm({ isModalOpen, closeModal, type, eventId }) {
           </button>
         </div>
         <div className="container">
-          {/* <form id="form" className="form"> */}
-          <div className="form-control">
-            <input
-              type="text"
-              placeholder="Event Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
-          <div className="form-control">
-            <input
-              type="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-            />
-          </div>
-          <div className="form-control">
-            <input
-              type="text"
-              placeholder="Location"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-            />
-          </div>
-          <div className="form-control">
-            <textarea
-              placeholder="Description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </div>
-          <button onClick={submit}>Submit</button>
-          {/* </form> */}
+          <form id="form" className="form">
+            <div className="form-control">
+              <input
+                type="text"
+                placeholder="Event Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div className="form-control">
+              <input
+                type="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+              />
+            </div>
+            <div className="form-control">
+              <input
+                type="text"
+                placeholder="Location"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+              />
+            </div>
+            <div className="form-control">
+              <textarea
+                placeholder="Description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </div>
+            <button onClick={submit}>Submit</button>
+          </form>
         </div>
       </Modal>
     </div>

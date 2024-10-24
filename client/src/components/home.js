@@ -57,11 +57,12 @@ function Home() {
             day: "numeric",
           });
           const isOwnEvent = userId === event.userId;
+          const dateStyleClass = isOwnEvent ? "date" : "event-date";
           return (
             <div className="basic-card basic-card-light" key={event.id}>
               <div className="card-content">
-                <p className="card-text date">{formattedDate}</p>
-                <span className="card-title">{event.name}</span>
+                <p className={"card-text " + dateStyleClass}>{formattedDate}</p>
+                <span className="card-title card-label">{event.name}</span>
                 <p className="card-text">
                   <IoLocationOutline style={{ marginRight: "5px" }} />
                   {event.location}
@@ -72,11 +73,14 @@ function Home() {
 
               <div className="card-link">
                 {isOwnEvent ? (
-                  <button onClick={() => openModal(event.id)}>
+                  <button
+                    className="edit-button"
+                    onClick={() => openModal(event.id)}
+                  >
                     Edit Event
                   </button>
                 ) : (
-                  <a href="/home">Join Event</a>
+                  <button className="edit-button">Join Event</button>
                 )}
               </div>
             </div>
