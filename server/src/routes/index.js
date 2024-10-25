@@ -4,7 +4,7 @@ const authMiddleware = require("../middleware/authMiddleware");
 const userController = require("../controllers/userControllers");
 const {
   saveAttendee,
-  getAttendeesByEventId,
+  deleteAttendee,
 } = require("../controllers/attendeeControllers");
 
 const {
@@ -28,5 +28,6 @@ router.delete("/events/:id", authMiddleware, deleteEvent);
 
 //Attendees
 router.post("/attendees", authMiddleware, saveAttendee);
+router.delete("/attendees/events/:id", authMiddleware, deleteAttendee);
 
 module.exports = router;

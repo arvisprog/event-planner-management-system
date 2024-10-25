@@ -10,7 +10,6 @@ function Home() {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [type, setType] = useState("");
   const [eventId, setEventId] = useState(null);
-  const [attendedEvents, setAttendedEvents] = useState(new Set());
 
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user.user.id;
@@ -37,12 +36,23 @@ function Home() {
         { eventId },
         { headers: { Authorization: `Bearer ${user?.token}` } }
       );
-
-      // Update attendedEvents after joining
-      setAttendedEvents((prev) => new Set(prev).add(eventId));
+      getEvents();
     } catch (error) {
       console.error("Error joining event:", error);
     }
+  };
+
+  const leaveEvent = async (eventId) => {
+    await axios
+      .delete(`http://localhost:8000/api/attendees/events/${eventId}`, {
+        headers: { Authorization: `Bearer ${user?.token}` },
+      })
+      .then(() => {
+        getEvents();
+      })
+      .catch((error) => {
+        console.error("Error leaving event:", error);
+      });
   };
 
   async function getEvents() {
@@ -107,7 +117,12 @@ function Home() {
                 ) : (
                   <>
                     {isUserAttending ? (
-                      <button className="edit-button">Leave Event</button>
+                      <button
+                        onClick={() => leaveEvent(event.id)}
+                        className="leave-button edit-button"
+                      >
+                        Leave Event
+                      </button>
                     ) : (
                       <button
                         onClick={() => joinEvent(event.id)}

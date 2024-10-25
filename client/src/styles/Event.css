@@ -13,7 +13,7 @@
 .basic-card {
   width: 280px;
   position: relative;
-  height: 280px;
+  height: 290px;
 
   -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.3);
@@ -192,6 +192,17 @@
   color: #636363;
   font-family: "Open Sans", sans-serif;
   text-decoration: underline;
+}
+.leave-button {
+  color: #fe5e5e;
+}
+
+.attendees {
+  margin-top: 10px;
+  position: absolute;
+  right: 40px;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 /* Event form css */
