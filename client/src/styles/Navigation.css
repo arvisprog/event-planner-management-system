@@ -18,6 +18,20 @@
   max-height: 30px;
 }
 
+.search-bar input {
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  background: #0982d5;
+  color: white;
+  outline: none;
+}
+
+.search-bar input::placeholder {
+  color: white;
+}
+
 .cta-button {
   background-color: white;
   color: #00aaff;

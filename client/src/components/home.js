@@ -7,6 +7,7 @@ import "../styles/Event.css";
 
 function Home() {
   const [events, setEvents] = useState([]);
+  const [filteredEvents, setFilteredEvents] = useState([]);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [type, setType] = useState("");
   const [eventId, setEventId] = useState(null);
@@ -60,7 +61,8 @@ function Home() {
       headers: { Authorization: `Bearer ${user?.token}` },
     });
 
-    setEvents(response.data);
+    setEvents(response?.data);
+    setFilteredEvents(response?.data);
   }
 
   useEffect(() => {
@@ -68,14 +70,29 @@ function Home() {
     //eslint-disable-next-line
   }, []);
 
+  const handleSearch = (event) => {
+    const query = event.target.value;
+
+    const filtered = events.filter(
+      (event) =>
+        event.name.toLowerCase().includes(query.toLowerCase()) ||
+        event.description.toLowerCase().includes(query.toLowerCase()) ||
+        event.location.toLowerCase().includes(query.toLowerCase())
+    );
+
+    setFilteredEvents(filtered);
+  };
+
   return (
     <div>
       <NavigationBar
         name={user?.user?.name}
         handleEventModalData={getDataFromEventModal}
+        handleSearch={handleSearch}
       />
+
       <div className="card-category-1">
-        {events?.map((event) => {
+        {filteredEvents?.map((event) => {
           const date = new Date(event.date);
           const formattedDate = date.toLocaleDateString("en-US", {
             year: "numeric",
