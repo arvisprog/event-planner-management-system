@@ -64,16 +64,18 @@ function Home() {
   };
 
   const deleteEvent = async (eventId) => {
-    await axios
-      .delete(`http://localhost:8000/api/events/${eventId}`, {
-        headers: { Authorization: `Bearer ${user?.token}` },
-      })
-      .then(() => {
-        getEvents();
-      })
-      .catch((error) => {
-        console.error("Error leaving event:", error);
-      });
+    if (window.confirm("Are you sure you want to delete this event?")) {
+      await axios
+        .delete(`http://localhost:8000/api/events/${eventId}`, {
+          headers: { Authorization: `Bearer ${user?.token}` },
+        })
+        .then(() => {
+          getEvents();
+        })
+        .catch((error) => {
+          console.error("Error leaving event:", error);
+        });
+    }
   };
 
   async function getEvents() {
