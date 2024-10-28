@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import axios from "axios";
 import { IoMdClose } from "react-icons/io";
@@ -16,7 +16,7 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-function EventForm({ isModalOpen, closeModal, type, eventId }) {
+function EventForm({ isModalOpen, closeModal, type, eventId, eventData }) {
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
   const [location, setLocation] = useState("");
@@ -24,9 +24,17 @@ function EventForm({ isModalOpen, closeModal, type, eventId }) {
 
   const user = JSON.parse(localStorage.getItem("user"));
 
+  useEffect(() => {
+    if (type === "Edit") {
+      setDate(new Date(eventData.date).toLocaleDateString("en-CA"));
+      setName(eventData.name);
+      setLocation(eventData.location);
+      setDescription(eventData.description);
+    }
+  }, [eventData]);
+
   const submit = async () => {
     if (type === "Edit") {
-      console.log("eventid", eventId);
       const response = await axios.put(
         `http://localhost:8000/api/events/${eventId}`,
         {

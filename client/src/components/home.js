@@ -11,6 +11,7 @@ function Home() {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [type, setType] = useState("");
   const [eventId, setEventId] = useState(null);
+  const [eventData, setEventData] = useState({});
 
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user.user.id;
@@ -24,10 +25,16 @@ function Home() {
     setIsOpen(false);
   };
 
-  const openModal = (eventId) => {
+  const openModal = (eventId, date, name, location, description) => {
     setIsOpen(true);
     setType("Edit");
     setEventId(eventId);
+    setEventData({
+      date: date,
+      name: name,
+      location: location,
+      description: description,
+    });
   };
 
   const joinEvent = async (eventId) => {
@@ -127,7 +134,15 @@ function Home() {
                 {isOwnEvent ? (
                   <button
                     className="edit-button"
-                    onClick={() => openModal(event.id)}
+                    onClick={() =>
+                      openModal(
+                        event.id,
+                        event.date,
+                        event.name,
+                        event.location,
+                        event.description
+                      )
+                    }
                   >
                     Edit Event
                   </button>
@@ -160,6 +175,7 @@ function Home() {
         closeModal={closeModal}
         type={type}
         eventId={eventId}
+        eventData={eventData}
       />
     </div>
   );
