@@ -63,6 +63,19 @@ function Home() {
       });
   };
 
+  const deleteEvent = async (eventId) => {
+    await axios
+      .delete(`http://localhost:8000/api/events/${eventId}`, {
+        headers: { Authorization: `Bearer ${user?.token}` },
+      })
+      .then(() => {
+        getEvents();
+      })
+      .catch((error) => {
+        console.error("Error leaving event:", error);
+      });
+  };
+
   async function getEvents() {
     const response = await axios.get("http://localhost:8000/api/events", {
       headers: { Authorization: `Bearer ${user?.token}` },
@@ -132,20 +145,29 @@ function Home() {
 
               <div className="card-link">
                 {isOwnEvent ? (
-                  <button
-                    className="edit-button"
-                    onClick={() =>
-                      openModal(
-                        event.id,
-                        event.date,
-                        event.name,
-                        event.location,
-                        event.description
-                      )
-                    }
-                  >
-                    Edit Event
-                  </button>
+                  <>
+                    <button
+                      className="edit-button"
+                      onClick={() =>
+                        openModal(
+                          event.id,
+                          event.date,
+                          event.name,
+                          event.location,
+                          event.description
+                        )
+                      }
+                    >
+                      Edit Event
+                    </button>
+
+                    <button
+                      className="edit-button delete-button"
+                      onClick={() => deleteEvent(event.id)}
+                    >
+                      Delete Event
+                    </button>
+                  </>
                 ) : (
                   <>
                     {isUserAttending ? (
