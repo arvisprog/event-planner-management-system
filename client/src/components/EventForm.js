@@ -30,8 +30,13 @@ function EventForm({ isModalOpen, closeModal, type, eventId, eventData }) {
       setName(eventData.name);
       setLocation(eventData.location);
       setDescription(eventData.description);
+    } else {
+      setDate("");
+      setName("");
+      setLocation("");
+      setDescription("");
     }
-  }, [eventData]);
+  }, [eventData, type]);
 
   const submit = async () => {
     if (type === "Edit") {
