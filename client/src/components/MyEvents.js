@@ -5,7 +5,7 @@ import EventForm from "./EventForm";
 import "../styles/Event.css";
 import EventCard from "./EventCard";
 
-function Home() {
+function MyEvents() {
   const [events, setEvents] = useState([]);
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -114,4 +114,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default MyEvents;

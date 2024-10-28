@@ -52,7 +52,7 @@ function NavigationBar({ name, handleEventModalData, handleSearch }) {
         <button className="link button" onClick={openModal}>
           Create Event
         </button>
-        <a className="cta-button" href="/home">
+        <a className="cta-button" href="/myevents">
           Hello, {name}
         </a>
         <button className="link button" onClick={handleLogout}>
