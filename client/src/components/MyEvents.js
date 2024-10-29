@@ -38,7 +38,7 @@ function MyEvents() {
   };
 
   async function getEvents() {
-    const response = await axios.get("http://localhost:8000/api/events", {
+    const response = await axios.get("http://localhost:8000/api/events/me", {
       headers: { Authorization: `Bearer ${user?.token}` },
     });
 

@@ -56,6 +56,31 @@ exports.getEventById = async (req, res) => {
   }
 };
 
+exports.getMyEvents = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    console.log("here", userId);
+    const events = await Event.findAll({
+      where: { userId }, // Filter events by the logged-in user's ID
+      include: [
+        {
+          model: Attendee,
+          include: [
+            {
+              model: User,
+              attributes: ["id", "name"],
+            },
+          ],
+        },
+      ],
+    });
+
+    return res.status(200).json(events);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 // Update an event by ID
 exports.updateEvent = async (req, res) => {
   try {

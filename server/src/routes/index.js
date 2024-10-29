@@ -13,6 +13,7 @@ const {
   getEventById,
   updateEvent,
   deleteEvent,
+  getMyEvents,
 } = require("../controllers/eventControllers");
 
 //Auth
@@ -22,6 +23,7 @@ router.post("/login", userController.login);
 //Events
 router.post("/events", authMiddleware, createEvent);
 router.get("/events", authMiddleware, getAllEvents);
+router.get("/events/me", authMiddleware, getMyEvents);
 router.get("/events/:id", authMiddleware, getEventById);
 router.put("/events/:id", authMiddleware, updateEvent);
 router.delete("/events/:id", authMiddleware, deleteEvent);
