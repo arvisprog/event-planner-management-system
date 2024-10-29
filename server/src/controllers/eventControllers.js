@@ -24,6 +24,7 @@ exports.createEvent = async (req, res) => {
 exports.getAllEvents = async (req, res) => {
   try {
     const events = await Event.findAll({
+      order: [["date", "ASC"]],
       include: [
         {
           model: Attendee,
@@ -59,9 +60,9 @@ exports.getEventById = async (req, res) => {
 exports.getMyEvents = async (req, res) => {
   try {
     const userId = req.user.id;
-    console.log("here", userId);
     const events = await Event.findAll({
-      where: { userId }, // Filter events by the logged-in user's ID
+      where: { userId },
+      order: [["date", "ASC"]],
       include: [
         {
           model: Attendee,
