@@ -139,6 +139,7 @@
 
 .basic-card-light {
   border: 1px solid #eee;
+  text-decoration: none;
 }
 
 .basic-card-light .card-title,

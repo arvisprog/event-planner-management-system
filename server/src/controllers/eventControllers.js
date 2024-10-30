@@ -47,7 +47,20 @@ exports.getAllEvents = async (req, res) => {
 // Get a single event by ID
 exports.getEventById = async (req, res) => {
   try {
-    const event = await Event.findByPk(req.params.id);
+    const event = await Event.findOne({
+      where: { id: req.params.id },
+      include: [
+        {
+          model: Attendee,
+          include: [
+            {
+              model: User,
+              attributes: ["id", "name"], // Adjust attributes as necessary
+            },
+          ],
+        },
+      ],
+    });
     if (!event) {
       return res.status(404).json({ message: "Event not found" });
     }

@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import "./styles/App.css";
 import MyEvents from "./components/MyEvents";
+import EventDetails from "./components/EventDetails";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/home" element={<Home />} />
           <Route path="/myevents" element={<MyEvents />} />
+          <Route path="/events/:id" element={<EventDetails />} />
         </Routes>
       </div>
     </Router>

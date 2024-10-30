@@ -61,7 +61,11 @@ function EventCard({
   };
 
   return (
-    <div className="basic-card basic-card-light" key={eventId}>
+    <a
+      className="basic-card basic-card-light"
+      href={`/events/${eventId}`}
+      key={eventId}
+    >
       <div className="card-content">
         <p className={"card-text " + dateStyleClass}>{eventDate}</p>
         <span className="card-title">{eventName}</span>
@@ -120,7 +124,7 @@ function EventCard({
           </>
         )}
       </div>
-    </div>
+    </a>
   );
 }
 
