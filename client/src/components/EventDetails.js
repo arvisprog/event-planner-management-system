@@ -83,6 +83,7 @@ function EventDetails() {
               </p>
             </div>
             <ul>{listItems}</ul>
+            {eventData?.Attendees?.length === 0 && <p>No attendees yet</p>}
           </div>
         </div>
       </div>
