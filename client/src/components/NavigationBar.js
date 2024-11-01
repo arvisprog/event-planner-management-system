@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { logout } from "../store/actions";
 import Logo from "../images/logo.png";
 
@@ -9,6 +10,8 @@ import "../styles/Navigation.css";
 function NavigationBar({ name, handleEventModalData, handleSearch }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { id } = useParams();
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -34,15 +37,16 @@ function NavigationBar({ name, handleEventModalData, handleSearch }) {
           <img src={Logo} alt="Logo" />{" "}
         </a>
       </div>
-
-      <div className="search-bar">
-        <input
-          type="text"
-          placeholder="Search events..."
-          value={searchQuery}
-          onChange={(e) => onSearch(e)}
-        />
-      </div>
+      {!id && (
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Search events..."
+            value={searchQuery}
+            onChange={(e) => onSearch(e)}
+          />
+        </div>
+      )}
 
       <div className="menu-right">
         <a className="link" href="/home">

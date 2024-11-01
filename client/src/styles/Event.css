@@ -142,6 +142,11 @@
   text-decoration: none;
 }
 
+.basic-card-light:hover {
+  background-color: #f7f7f7;
+  margin-top: -10px;
+}
+
 .basic-card-light .card-title,
 .basic-card-light .card-link a {
   color: #636363;

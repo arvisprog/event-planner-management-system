@@ -4,23 +4,14 @@ import NavigationBar from "./NavigationBar";
 import EventForm from "./EventForm";
 import { IoLocationOutline } from "react-icons/io5";
 import { useParams } from "react-router-dom";
+import "../styles/EventDetails.css";
 
-function EventDetails({
-  eventDate,
-  eventName,
-  eventLocation,
-  eventDescription,
-  attendeesCount,
-  isOwnEvent,
-}) {
+function EventDetails() {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [type, setType] = useState("");
-  const [eventId, setEventId] = useState(null);
   const [eventData, setEventData] = useState({});
 
   const user = JSON.parse(localStorage.getItem("user"));
-
-  const dateStyleClass = isOwnEvent ? "date" : "event-date";
 
   const { id } = useParams();
 
@@ -33,12 +24,14 @@ function EventDetails({
     setIsOpen(false);
   };
 
-  const handleSearch = (event) => {
-    const query = event.target.value;
-  };
-
   const listItems = eventData?.Attendees?.map((d) => (
-    <li key={d.User.name}>{d.User.name}</li>
+    <li key={d.User.name} className="attendee">
+      <div className="avatar">
+        <h5>{d.User.name.charAt(0)}</h5>
+      </div>
+      <h5 className="attendee-name">{d.User.name}</h5>
+      <h5 className="attendee-email">{d.User.email}</h5>
+    </li>
   ));
 
   const getEventById = async () => {
@@ -46,7 +39,6 @@ function EventDetails({
       headers: { Authorization: `Bearer ${user?.token}` },
     });
 
-    console.log("response", response);
     setEventData(response.data);
   };
 
@@ -55,32 +47,50 @@ function EventDetails({
     //eslint-disable-next-line
   }, []);
 
+  const formattedDate = new Date(eventData.date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
   return (
     <>
       <NavigationBar
         name={user?.user?.name}
         handleEventModalData={getDataFromEventModal}
-        handleSearch={handleSearch}
       />
-      <div className="">
-        <p>Event details</p>
-        <p className={"" + dateStyleClass}>{eventData.date}</p>
-        <span className="">{eventData.name}</span>
-
-        <p className="">
-          <IoLocationOutline style={{ marginRight: "5px" }} />
-          {eventData.location}
-        </p>
-        <p className="">{eventData.description}</p>
-        {listItems}
-        <EventForm
-          isModalOpen={modalIsOpen}
-          closeModal={closeModal}
-          type={type}
-          eventId={eventId}
-          eventData={eventData}
-        />
+      <div className="card-wrapper">
+        <div className="card left">
+          <div className="event-content">
+            <h2 className="event-title">{eventData.name}</h2>
+            <a className="event-link">{formattedDate}</a>
+            <div className="event-detail">
+              <h4 className="event-location">
+                <IoLocationOutline style={{ marginRight: "5px" }} />
+                {eventData.location}
+              </h4>
+              <h3>About this Event: </h3>
+              <p>{eventData.description}</p>
+            </div>
+          </div>
+        </div>
+        <div className="card right">
+          <div className="event-content">
+            <div className="attendes-container">
+              <h2 className="attendee-title">Attendees</h2>
+              <p className="attendees-number">
+                {eventData?.Attendees?.length} attendees
+              </p>
+            </div>
+            <ul>{listItems}</ul>
+          </div>
+        </div>
       </div>
+      <EventForm
+        isModalOpen={modalIsOpen}
+        closeModal={closeModal}
+        type={type}
+      />
     </>
   );
 }

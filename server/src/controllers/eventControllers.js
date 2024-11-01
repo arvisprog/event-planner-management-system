@@ -55,7 +55,7 @@ exports.getEventById = async (req, res) => {
           include: [
             {
               model: User,
-              attributes: ["id", "name"], // Adjust attributes as necessary
+              attributes: ["id", "name", "email"],
             },
           ],
         },

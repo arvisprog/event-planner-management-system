@@ -1,0 +1,132 @@
+.card-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.card {
+  flex: 1;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.attendes-container {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 30px;
+  margin: 1rem 0;
+  justify-content: space-between;
+}
+
+.attendees-number {
+  opacity: 0.6;
+}
+
+.attendee {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin: 5px 0;
+  padding: 10px 5px;
+  border-bottom: 0.3px solid rgb(223, 222, 222);
+}
+
+.attendee-title {
+  font-size: 2rem;
+
+  font-weight: 500;
+}
+
+.attendee-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.attendee-email {
+  font-weight: 500;
+  opacity: 0.6;
+}
+
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0089db;
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+}
+
+.event-content {
+  padding: 2rem 1rem;
+}
+
+.event-location {
+  margin-bottom: 50px;
+  align-items: center;
+  display: flex;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.event-title {
+  font-size: 2rem;
+  text-transform: capitalize;
+  font-weight: 500;
+  position: relative;
+  color: black;
+  margin: 1rem 0;
+}
+
+.event-link {
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 0.9rem;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  background: #005dab;
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 3px;
+}
+
+.event-detail h2 {
+  text-transform: capitalize;
+  color: black;
+  padding-bottom: 0.6rem;
+}
+
+.event-detail p {
+  font-size: 0.9rem;
+  padding: 0.3rem;
+  opacity: 0.8;
+}
+
+.event-detail ul {
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+.event-detail ul li {
+  margin: 0;
+  list-style: none;
+  background-size: 18px;
+  margin: 0.4rem 0;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.event-detail h3 {
+  font-weight: 500;
+}
+
+.event-detail ul li span {
+  font-weight: 400;
+}
