@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { logout } from "../store/actions";
 import Logo from "../images/logo.png";
 
 import "../styles/Navigation.css";
 
 function NavigationBar({ name, handleEventModalData, handleSearch }) {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { id } = useParams();
@@ -16,7 +13,6 @@ function NavigationBar({ name, handleEventModalData, handleSearch }) {
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleLogout = () => {
-    dispatch(logout());
     localStorage.removeItem("user");
     navigate("/");
   };

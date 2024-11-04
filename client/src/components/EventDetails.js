@@ -63,7 +63,7 @@ function EventDetails() {
         <div className="card left">
           <div className="event-content">
             <h2 className="event-title">{eventData.name}</h2>
-            <a className="event-link">{formattedDate}</a>
+            <p className="event-link">{formattedDate}</p>
             <div className="event-detail">
               <h4 className="event-location">
                 <IoLocationOutline style={{ marginRight: "5px" }} />

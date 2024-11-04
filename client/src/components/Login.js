@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { loginSuccess, loginFailure } from "../store/actions";
 import "../styles/App.css";
 
 function Login() {
@@ -11,7 +9,6 @@ function Login() {
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,14 +19,11 @@ function Login() {
         password,
       });
 
-      console.log(response.data);
-      dispatch(loginSuccess(response.data));
       localStorage.setItem("user", JSON.stringify(response.data));
       navigate("/home");
     } catch (err) {
       const errorMsg = err.response?.data?.message || "Login failed";
       setError(errorMsg);
-      dispatch(loginFailure(errorMsg));
     }
   };
 

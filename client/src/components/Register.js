@@ -14,13 +14,12 @@ function Register() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8000/api/register", {
+      await axios.post("http://localhost:8000/api/register", {
         name,
         email,
         password,
       });
       navigate("/");
-      console.log(response.data);
     } catch (err) {
       setError(err.response?.data?.message || "Registration failed");
     }
