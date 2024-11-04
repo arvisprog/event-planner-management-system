@@ -80,13 +80,14 @@ function EventForm({ isModalOpen, closeModal, type, eventId, eventData }) {
           </button>
         </div>
         <div className="container">
-          <form id="form" className="form">
+          <form id="form" className="form" onSubmit={submit}>
             <div className="form-control">
               <input
                 type="text"
                 placeholder="Event Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                required
               />
             </div>
             <div className="form-control">
@@ -94,6 +95,7 @@ function EventForm({ isModalOpen, closeModal, type, eventId, eventData }) {
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
+                required
               />
             </div>
             <div className="form-control">
@@ -102,6 +104,7 @@ function EventForm({ isModalOpen, closeModal, type, eventId, eventData }) {
                 placeholder="Location"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
+                required
               />
             </div>
             <div className="form-control">
@@ -109,9 +112,10 @@ function EventForm({ isModalOpen, closeModal, type, eventId, eventData }) {
                 placeholder="Description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
+                required
               />
             </div>
-            <button onClick={submit}>Submit</button>
+            <button type="submit">Submit</button>
           </form>
         </div>
       </Modal>
