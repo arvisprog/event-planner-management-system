@@ -103,6 +103,9 @@ function Home() {
           );
         })}
       </div>
+      {filteredEvents?.length === 0 && (
+        <p className="no-result-text">No results found</p>
+      )}
       <EventForm
         isModalOpen={modalIsOpen}
         closeModal={closeModal}

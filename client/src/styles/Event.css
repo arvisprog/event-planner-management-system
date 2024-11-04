@@ -74,6 +74,10 @@
   font-size: 12px;
 }
 
+.no-result-text {
+  text-align: center;
+}
+
 .description {
   font-size: 14px;
   margin-top: 10px;
