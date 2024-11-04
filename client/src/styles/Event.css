@@ -53,6 +53,12 @@
   text-overflow: ellipsis;
 }
 
+.location {
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  text-overflow: ellipsis;
+}
+
 .date {
   background: #005dab;
   border-radius: 7px;

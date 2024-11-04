@@ -67,7 +67,7 @@ function EventCard({
         <a className="card-title" href={`/events/${eventId}`}>
           <span>{eventName}</span>
         </a>
-        <p className="card-text">
+        <p className="card-text location">
           <IoLocationOutline style={{ marginRight: "5px" }} />
           {eventLocation}
         </p>
