@@ -61,14 +61,12 @@ function EventCard({
   };
 
   return (
-    <a
-      className="basic-card basic-card-light"
-      href={`/events/${eventId}`}
-      key={eventId}
-    >
+    <div className="basic-card basic-card-light" key={eventId}>
       <div className="card-content">
         <p className={"card-text " + dateStyleClass}>{eventDate}</p>
-        <span className="card-title">{eventName}</span>
+        <a className="card-title" href={`/events/${eventId}`}>
+          <span>{eventName}</span>
+        </a>
         <p className="card-text">
           <IoLocationOutline style={{ marginRight: "5px" }} />
           {eventLocation}
@@ -124,7 +122,7 @@ function EventCard({
           </>
         )}
       </div>
-    </a>
+    </div>
   );
 }
 
