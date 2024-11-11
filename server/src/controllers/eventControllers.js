@@ -31,7 +31,7 @@ exports.getAllEvents = async (req, res) => {
           include: [
             {
               model: User,
-              attributes: ["id", "name"], // Adjust attributes as necessary
+              attributes: ["id", "name"],
             },
           ],
         },
@@ -126,7 +126,7 @@ exports.deleteEvent = async (req, res) => {
         .json({ message: "You do not have permission to delete this event" });
     }
     await event.destroy();
-    return res.status(204).send(); // No content
+    return res.status(204).send();
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

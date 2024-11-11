@@ -19,7 +19,6 @@ const models = {
   Attendee,
 };
 
-// Set up associations
 User.associate(models);
 Event.associate(models);
 Attendee.associate(models);

@@ -1,6 +1,5 @@
-// config/database.js (if you decide to keep this separate)
 const { Sequelize } = require("sequelize");
-const config = require("./config.json"); // Adjust the path as needed
+const config = require("./config.json");
 
 const env = "development"; // Default to 'development'
 const dbConfig = config[env];
